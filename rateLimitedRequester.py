@@ -4,7 +4,7 @@ Module: Rate Limited Requester Prediction
 Notes: Requires Python 3.6+
 """
 
-import requests
+import urllib
 import time
 
 class rateLimitedRequester:
@@ -17,7 +17,7 @@ class rateLimitedRequester:
     # Limits requests to rpm
     def rlrequest(self, URL):
         # Make request
-        data = requests.get(url=URL)
+        data = urllib.request.urlopen(URL).read()
         # Restart timer if requests is at zero
         if self.batchRequests == 0:
             self.batchEnd = time.time() + 60 # 60 seconds in future
